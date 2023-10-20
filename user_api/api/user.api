@@ -1,0 +1,38 @@
+syntax = "v2"
+
+type (
+	GetUserReq {
+		Id int64 `path:"id" validate:"required,gte=0,lte=10"`
+	}
+
+	GetUserRep {
+		Id       int64  `json:"id"`
+		Name     string `json:"name"`     // The username
+		Password string `json:"password"` // The user password
+		Mobile   string `json:"mobile"`   // The mobile phone number
+		Type     int64  `json:"type"`     // The user type, 0:normal,1:vip, for test golang keyword
+		CreateAt string `json:"create_at"`
+		UpdateAt string `json:"update_at"`
+	}
+
+	SetUserReq {
+		Name     string `json:"name"`     // The username
+		Password string `json:"password"` // The user password
+		Mobile   string `json:"mobile"`   // The mobile phone number
+		Type     int64  `json:"type"`
+	}
+)
+
+@server(
+	group: user
+	prefix: user/v1
+	middleware: TestMiddleWare
+)
+
+service user {
+	@handler GetUser
+	get /user/:id (GetUserReq) returns (GetUserRep)
+
+	@handler SetUser
+	post /user (SetUserReq) returns(string)
+}

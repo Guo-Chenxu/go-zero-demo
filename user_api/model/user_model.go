@@ -1,0 +1,41 @@
+package model
+
+import (
+	"github.com/zeromicro/go-zero/core/stores/cache"
+	"gorm.io/gorm"
+)
+
+var _ UserModel = (*customUserModel)(nil)
+
+type (
+	// UserModel is an interface to be customized, add more methods here,
+	// and implement the added methods in customUserModel.
+	UserModel interface {
+		userModel
+		customUserLogicModel
+		
+		// 添加自己实现的model
+		myUserModel
+	}
+
+	customUserModel struct {
+		*defaultUserModel
+	}
+
+	customUserLogicModel interface {
+	}
+)
+
+// NewUserModel returns a model for the database table.
+func NewUserModel(conn *gorm.DB, c cache.CacheConf) UserModel {
+	return &customUserModel{
+		defaultUserModel: newUserModel(conn, c),
+	}
+}
+
+func (m *defaultUserModel) customCacheKeys(data *User) []string {
+	if data == nil {
+		return []string{}
+	}
+	return []string{}
+}

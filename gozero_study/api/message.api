@@ -1,0 +1,25 @@
+syntax = "v1"
+
+type (
+	Request {
+		Name string `path:"name,options=you|me"`
+	}
+
+	Response {
+		Message string `json:"message"`
+	}
+)
+
+@server(
+	group: message
+	prefix: message/v1
+	middleware: MessageMiddleWare
+)
+
+service gozero_study-api {
+	@handler Gozero_studyHandler
+	get /from/:name(Request) returns (Response)
+
+	@handler Ping
+	get /ping returns (string)
+}
