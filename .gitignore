@@ -5,3 +5,8 @@
 .vscode/
 
 *.exe
+
+logs/
+*.log
+
+cache/

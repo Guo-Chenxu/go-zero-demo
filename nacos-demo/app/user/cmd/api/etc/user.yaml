@@ -1,3 +1,7 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+
 # nacos://[user:passwd]@host/service?param=value'
 UserRpcConfig:
   Target: nacos://nacos:nacos@127.0.0.1:8848/user-rpc?timeout=5000ms&namespaceid=877a8c27-3f98-42fa-80b7-00fd3725439e
