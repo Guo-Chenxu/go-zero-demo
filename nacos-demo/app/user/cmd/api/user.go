@@ -12,7 +12,6 @@ import (
 	_ "github.com/zeromicro/zero-contrib/zrpc/registry/nacos"
 )
 
-// var configFile = flag.String("f", "etc/user.yaml", "the config.go file")
 var bootstrapConfigFile = flag.String("f", "etc/bootstrap.yaml", "the config.go file")
 
 func main() {

@@ -7,6 +7,7 @@ type Config struct {
 	NacosConfig NacosConfig
 }
 
+// NacosConfig 注册nacos的配置
 type NacosConfig struct {
 	Host                string
 	Port                uint64
